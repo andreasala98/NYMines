@@ -1,0 +1,15 @@
+\section{Methodologies}
+\label{Metho}
+
+This Section presents the methodologies used to accomplish the project goals. Further details for the Sentiment Analysis techniques can be found in \cite{Aggarwal}.
+
+\subsection{Data collection and preprocessing}
+
+First of all, the datasets were loaded from csv format into a Python Notebook. Since articles and comments from different months were stored in different files, I had to merge them into two Pandas DataFrames. After that, all the features considered unnecessary for the project were removed. 
+The following step is to preprocess the comment bodies in order to prepare them for sentiment analysis. The preprocessing tasks included punctuation removal, lowering of text, stop-word removal and stemming. The latter two were performed using classes from the NLTK package \cite{NLTK}. In particular, stemming was performed via a Porter Stemmer.
+
+\subsection{Sentiment Calculation}
+Once the comments were ready to be processed, a lexicon-based method was used to calculate polarity for each word in the comments. 
+
+\subsection{Evaluation strategies}
+

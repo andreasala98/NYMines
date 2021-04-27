@@ -1,0 +1,15 @@
+\section{Dataset}
+
+The dataset used for the project is the \textit{New York Times Comments} dataset available on Kaggle \cite{Dataset}. As the dataset webpage states:
+
+\begin{quote}
+The data contains information about the comments made on the articles published in New York Times in Jan-May 2017 and Jan-April 2018. The month-wise data is given in two csv files - one each for the articles on which comments were made and for the comments themselves. The csv files for comments contain over 2 million comments in total with 34 features and those for articles contain 16 features about more than 9,000 articles.
+\end{quote}
+
+Among the available features, this project made use of the following:
+\begin{itemize}
+\item For the comment dataset: article ID, comment body, editors selection, recommendations, section name, desk and type of material.
+\item For the article dataset: article ID, author, section, desk and type of material.
+\end{itemize}
+
+The dataset was easy to upload and manipulate thanks to the {\tt pandas} framework. However, more than half of the articles did not belong to any news section. This issue will be dealt more accurately in Sec. \ref{Metho}. 
