@@ -1,17 +1,59 @@
-\documentclass[]{article}
+\documentclass{article}
 
-%opening
-\title{}
-\author{Andrea Sala}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{graphicx, setspace} 
+\usepackage{amsmath, amssymb}
+\usepackage{amstext}
+\usepackage[colorlinks=true]{hyperref}
+\hypersetup{
+     colorlinks=true,
+     citecolor=blue,
+     linkcolor=blue,
+     urlcolor=blue}  
+\geometry{top=2cm, bottom=3.1cm, left=3.5cm, right=3.5cm, heightrounded, bindingoffset=4mm}
+
+
+\usepackage{fancyhdr} 
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+%\fancyhead[RO]{\thepage}
+%\fancyhead[LO]{\rightmark}
+%\fancyhead[RE]{\leftmark}
+
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{hyperref}
+
+
+\title{Extracting Controversy of News Comments \\Through Sentiment Analysis}
+\author{Andrea Sala \thanks{Department of Physics,  Università degli Studi di Milano}}
+
+\date{April 2021}
+
+\makeatletter
+\renewcommand*{\@fnsymbol}[1]{\ensuremath{\ifcase#1\or \dagger \or \ddagger \else\@ctrerr\fi}}
+\makeatother
 
 \begin{document}
-
 \maketitle
 
-\begin{abstract}
+\input{Goals}
+\input{Dataset}
+\input{Meth}
+\input{Results}
+\include{NYbib}
 
-\end{abstract}
-
-\section{}
+%\printbibliography
 
 \end{document}
