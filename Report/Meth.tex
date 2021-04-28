@@ -5,11 +5,27 @@ This Section presents the methodologies used to accomplish the project goals. Fu
 
 \subsection{Data collection and preprocessing}
 
-First of all, the datasets were loaded from csv format into a Python Notebook. Since articles and comments from different months were stored in different files, I had to merge them into two Pandas DataFrames. After that, all the features considered unnecessary for the project were removed. 
-The following step is to preprocess the comment bodies in order to prepare them for sentiment analysis. The preprocessing tasks included punctuation removal, lowering of text, stop-word removal and stemming. The latter two were performed using classes from the NLTK package \cite{NLTK}. In particular, stemming was performed via a Porter Stemmer.
+First of all, the datasets were loaded from csv format into a Python Notebook. Since articles and comments from different months were stored in different files, I had to merge them into two Pandas {\tt DataFrames}. After that, all the features considered unnecessary for the project were removed. 
+The following step is to preprocess the comment bodies in order to prepare them for sentiment analysis. The preprocessing tasks included punctuation removal, case lowering, stop-word removal and stemming. The latter two were performed using methods from the NLTK package \cite{NLTK}. In particular, stemming was performed via a Porter Stemmer.
 
 \subsection{Sentiment Calculation}
-Once the comments were ready to be processed, a lexicon-based method was used to calculate polarity for each word in the comments. 
+Once the comments were ready to be processed, a lexicon-based method was used to calculate polarity for each word in the comments. In particular, the AFINN lexicon \cite{AFINN} was used. This lexicon consists of a list of more than 3000 words, each associated with an integer score between -5 and 5. The score for each comment $c$, from now on labelled as CS, was calculated with the following formula \cite{Guardian}:
+\begin{equation}
+CS(c) = \frac{\sum_{w} S(w)}{\sqrt{N+1}}
+\end{equation}
+where $S(w)$ are the single-word scores, and $N$ is the total number of words in a comment. The definitive score for a comment, named \textit{popularity}, was the sum of CS and a normalised count of the recommendations each comment received:
+\begin{equation}
+Pop (c) = CS(c) + \frac{\mbox{Recomm} (c)}{\max_c{\mbox{Recomm}(c)}}
+\end{equation}
+The score for each article (AS) was subsequently computed through the formula after grouping comments by the article $a$ they belonged to:
+
+\begin{equation}
+AS(a) = \frac{\sum_{c} Pop(c)}{\sqrt{M+1}}
+\end{equation}
+where CS(c) is the comment score and $M$ is the number of comments related to a given article.
+
+
 
 \subsection{Evaluation strategies}
 
+The index of controversy for each article needed to take account of two factors: popularity of the comment, and if there was any form of debate between comments from different users.
