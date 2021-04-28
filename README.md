@@ -1,4 +1,4 @@
-<img align="right" width="300" src="https://github.com/andreasala98/NYMines/blob/master/Misc/shutterstock_272424740.0.jpg">
+<img align="right" width="300" src="https://github.com/andreasala98/NYMines/Misc/logoimage.jpg">
 ## 📰 NYMines 📰
 
 This repository contains the project for the course _Text Mining and Sentiment Analysis_ held by Professor Alfio Ferrara at Università degli Studi di Milano in 2021.
@@ -19,4 +19,4 @@ This project is released with a permissive Apache License. For more information,
 
 
 [1]: https://www.kaggle.com/aashita/nyt-comments
-[2]: https://www.github.com/andreasala98/NYMines/blob/master/LICENSE
+[2]: https://www.github.com/andreasala98/NYMines/LICENSE
