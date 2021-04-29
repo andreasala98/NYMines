@@ -102,9 +102,26 @@ If we look at the averages on categories (FIg. \ref{RG2} and \ref{RG2nd}), it ca
 
 
 \subsection{Keyword extraction}
-Lastly, a feature extraction was performed to check which words were common in comments related to the most controversial articles (top 10\%). A corpus vectorisation was performed via a {\tt TfidfVectorizer}, and then a $\chi2$ analysis was invoked to select words with higher score. Since TF-IDF tends to boost the score of words which are very uncommon in the corpus, among the "top controversial words" there were many nonsensical words, probably originated by typos of the comment authors. For this reason, only the words with a match in the AFINN dictionary were kept. Figure \ref{TopWords} depicts the words selected by the $\chi^2$ analysis.
+Lastly, a feature extraction was performed to check which words were common in comments related to the most controversial articles (top 10\%). A corpus vectorisation was performed via a {\tt TfidfVectorizer}, and then a $\chi2$ analysis was invoked to select words with higher frequency. Since TF-IDF tends to boost the score of words which are very uncommon in the corpus, among the "top controversial words" there were many nonsensical words that occurred only once in the whole corpus, probably originated by typos of the comment authors. For this reason, only the words with a match in the AFINN dictionary were kept. Figure \ref{TopWords} depicts the words selected by the $\chi^2$ analysis. An ample fraction of the word list is made of polarised words, indicating that polarity is at the basis of controversy.
 
 \begin{figure}
 \centering
 \includegraphics[width=\tw]{Pictures/TopWs.png}
+\caption{Most controversial words in the comment dataset.}
+\label{TopWords}
 \end{figure}
+
+\section{Conclusions}
+
+The aim of this project was to define controversy in news articles by analysing the comments below the articles. Two different strategies were adopted, each one with its pros and cons.
+Strategy 1 defined controversy through a linear relationship; it was the one who guaranteed the results with most common sense (Politics and Middle East were among the top categories), but it failed to detach from popularity.
+On the other hand, strategy 2 guaranteed a significant shift from popularity and removed linear correlations, but the results leave us with some doubts.
+In any case, it was proved that in either case polarity in the comments is the key to analyse controversy. 
+Some future developments to this work could be:
+\begin{itemize}
+\item Perform aspect-based sentiment analysis to go deeper into the comments, and analyse which aspects within a given comment generated controversy
+\item Using topic modelling, extract the article section name from the comments, since nearly half of the articles in the dataset were provided with "Unknown" section name
+\item Demonstrate the robustness of this controversy estimator by changing the lexicon (for example, WordNet could be used instead of AFINN) and look for similar behaviour of the controversy distribution
+\item Find another strategy to remove correlation between popularity and controversy without the need to apply a logarithm
+\item Train a classifier able to predict controversy in other datasets of news and comments
+\end{itemize}
