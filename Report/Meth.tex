@@ -7,15 +7,17 @@ This Section presents the methodologies used to accomplish the project goals. Fu
 
 First of all, the datasets were loaded from csv format into a Python Notebook. Since articles and comments from different months were stored in different files, I had to merge them into two Pandas {\tt DataFrames}. After that, all the features considered unnecessary for the project were removed. 
 The following step is to preprocess the comment bodies in order to prepare them for sentiment analysis. The preprocessing tasks included punctuation removal, case lowering, stop-word removal and stemming. The latter two were performed using methods from the NLTK package \cite{NLTK}. In particular, stemming was performed via a Porter Stemmer.
+Furthermore, all articles without any headline, section name and desk name were removed.
 
 \subsection{Sentiment Calculation}
 Once the comments were ready to be processed, a lexicon-based method was used to calculate polarity for each word in the comments. In particular, the AFINN lexicon \cite{AFINN} was used. This lexicon consists of a list of more than 3000 words, each associated with an integer score between -5 and 5. The score for each comment $c$, from now on labelled as CS, was calculated with the following formula \cite{Guardian}:
 \begin{equation}
 CS(c) = \frac{\sum_{w} S(w)}{\sqrt{N+1}}
 \end{equation}
-where $S(w)$ are the single-word scores, and $N$ is the total number of words in a comment. The definitive score for a comment, named \textit{popularity}, was the sum of CS and a normalised count of the recommendations each comment received:
+where $S(w)$ are the single-word scores, and $N$ is the total number of words in a comment. The definitive score for a comment, named \textit{popularity}, was the sum of CS and a normalised count of the recommendations each comment received. Furthermore, the score was doubled if the variable {\tt editorsSelection} was set to 1, meaning that the comment had been appreciated by the New York Times editors
 \begin{equation}
-Pop (c) = CS(c) + \frac{\mbox{Recomm} (c)}{\max_c{\mbox{Recomm}(c)}}
+\label{Popc}
+Pop (c) = (1 + \mbox{editorsSelection} (c) ) \left( CS(c) + \frac{\mbox{Recomm} (c)}{\max_c{\mbox{Recomm}(c)}} \right)
 \end{equation}
 The score for each article (AS) was subsequently computed through the formula after grouping comments by the article $a$ they belonged to:
 
@@ -28,4 +30,16 @@ where CS(c) is the comment score and $M$ is the number of comments related to a 
 
 \subsection{Evaluation strategies}
 
-The index of controversy for each article needed to take account of two factors: popularity of the comment, and if there was any form of debate between comments from different users.
+The index of controversy for each article needed to take account of two factors: popularity of the comment, and if there was any form of debate between comments from different users. The former could be estimated naively as the number of comments under each article; the latter was evaluated as the interquartile range (IQR) of the $Pop(c)$ distribution for each article. This choice was made because the IQR is an indicator of statistical dispersion. Thus, one can expect for an article with opposing opinions to present two populated regions at the extremes of the distributions. 
+The controversy index was hence defined as 
+\begin{equation}
+\mbox{Contr}_1(a) = \mbox{IQR}(a) * M
+\end{equation}
+The results for this index (see Section \ref{Resul}) suggested to take another strategy: applying the natural logarithm to the number of comments, to obtain
+\begin{equation}
+\mbox{Contr}_2(a) = \mbox{IQR}(a) * \log{M}
+\end{equation}
+
+After defining and calculating the index of controversy, articles were grouped by different categories, such as section name, new desk and author, in order to see whether some categories were more controversial than others. All the results from this groupings are reported in Sec. \ref{Resul}.
+
+Lastly, the keywords from comments of the most controversial articles were extracted by means of a TF-IDF vectorizer and a $\chi^2$ selector. Among the best features obtained, only those present in the AFINN dictionary were kept.
