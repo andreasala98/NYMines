@@ -6,17 +6,20 @@ The popularity distribution computed through Eq. (\ref{Popc}) shows a gaussian-l
 
 \begin{figure}
 \centering
-\begin{subfigure}{0.45\tw}
-\includegraphics[width=\tw]{Pictures/PopularityDist.pdf}
-\caption{Popularity distribution for comments.}
-\label{PopDist}
-\end{subfigure}
-
-\begin{subfigure}{0.45\tw}
-\includegraphics[width=\tw]{Pictures/articleScoreDist.pdf}
-\caption{Popularity distribution for comments.}
-\label{PopDist}
-\end{subfigure}
+    \begin{subfigure}{0.5\tw}
+    \centering
+    \includegraphics[width=.9\tw]{Pictures/PopularityDist.pdf}
+    \caption{Popularity distribution}
+    \label{PopDist}
+    \end{subfigure}%
+\hfill
+    \begin{subfigure}{0.5\tw}
+    \centering
+    \includegraphics[width=\tw]{Pictures/articleScoreDist.pdf}
+    \caption{Article score distribution.}
+    \label{AScore}
+    \end{subfigure}
+\caption{Preliminary distributions.}
 \end{figure}
 
-The article score distribution shows a similar behaviour; it is reported in Fig. \ref{AScore} even though it will not be included in further analyses. Again, the article Score calculated with Eq. \ref{ASeq} show a quite symmetrical distribution, meaning that the
+The article score distribution shows a similar behaviour; it is reported in Fig. \ref{AScore} even though it will not be included in further analyses. Again, the article Score calculated with Eq. \ref{ASeq} shows a quite symmetrical distribution, meaning that the estimator is consistent and the articles are distributed equally among the polarity spectrum.
