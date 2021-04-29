@@ -34,11 +34,18 @@ The first strategy to estimate controversy in news articles (Eq. \ref{Str1}) was
 \label{Str1Dist}
 \end{figure}
 
-To corroborate this hypothesis, the correlation scatter plots for the three variables were built, and Fig. \ref{Str1Cor} shows a very strong linear correlation between popularity and controversy. This correlation goes against the thesis of the project, which is trying to differentiate the so-called "hot topics" from the most controversial ones. 
+To corroborate this hypothesis, the correlation scatter plots for the three variables were built, and Fig. \ref{Str1Corr} shows a very strong linear correlation between popularity and controversy. This correlation rows against the thesis of the project, which is trying to differentiate the so-called "hot topics" from the most controversial ones. For this reason, another strategy was implemented to see if some other definition of controversy can detach more efficiently from the concept of popularity.
 
 \begin{figure}[tb]
 \centering
 \includegraphics[width=\tw]{Pictures/Strat1Corr.pdf}
 \caption{Correlation plots for Strategy 1.}
 \label{Str1Corr}
+\end{figure}
+
+To go deeper into the analysis, the controversy scores for each articles were averaged among articles of the same section. This grouping was made to see if any article section is more controversial than others. Unfortunately, Strategy 1 did not prove to be useful in this case, as the most controversial topics are also the most popular one. Figure \ref{RG1} shows how, for each section, the controversy and the popularity score look very similar to each other (after proper normalisation).
+
+\begin{figure}
+\centering
+\includegraphics
 \end{figure}
