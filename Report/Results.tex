@@ -66,13 +66,29 @@ After that, articles were also grouped by the "new desk" index, to see if there 
 
 Strategy 2 consisted on applying the natural logarithm to the number of comments under each article, in order to dampen the strong dependencies between the former and controversy. Thanks to this new strategy, results change significantly, and they are reported in the same format as Section \ref{Strategy1}.
 First of all, the popularity distribution (hence the controversy index) are represented in their new shapes, while the debate distribution obviously does not change.
-By looking at the correlation plots, it can be seen that the strong linear correlation between the two distributions has been removed.
+By looking at the correlation plots, it can be seen that the strong linear correlation between the two distributions has been removed. The problem is now that distributions are not smooth for small values of popularity, because of the logarithm. However, the distribution of controversy looks smoother and more balanced compared to the one adopted in Strategy 1.
+
+\begin{figure}
+\centering
+\includegraphics[width=\tw]{Pictures/Strat2SN.pdf}
+\caption{Most controversial sections for Strategy 2}
+\label{RG2}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\tw]{Pictures/Strat2ND.pdf}
+\caption{Most controversial desks for Strategy 2}
+\label{RG2nd}
+\end{figure}
+
+If we look at the averages on categories (FIg. \ref{RG2} and \ref{RG2nd}), it can be seen that popularity and controversy are now two very different quantities. The bar plots both for section name and desk show different behaviour between the two data series. However, the problem with Strategy 2 is that the categories labelled as "highly controversial" are quite unexpected, such as Cycling and Entertainment. On the other hand, controversial categories in Strategy 1 were Politics, Editorials and Middle East (categories one would expect to be controversial).
 
 
-\begin{figure}[tb]
+\begin{figure}
 \centering
 \includegraphics[width=\tw]{Pictures/Strat2Dist.pdf}
-\caption{Popularity, Debate and Controversy distributions for Strategy 1}
+\caption{Popularity, Debate and Controversy distributions for Strategy 2.}
 \label{Str1Dist}
 \end{figure}
 
@@ -80,6 +96,15 @@ By looking at the correlation plots, it can be seen that the strong linear corre
 \begin{figure}[tb]
 \centering
 \includegraphics[width=\tw]{Pictures/Strat2Corr.pdf}
-\caption{Correlation plots for Strategy 1.}
+\caption{Correlation plots for Strategy 2.}
 \label{Str1Corr}
+\end{figure}
+
+
+\subsection{Keyword extraction}
+Lastly, a feature extraction was performed to check which words were common in comments related to the most controversial articles (top 10\%). A corpus vectorisation was performed via a {\tt TfidfVectorizer}, and then a $\chi2$ analysis was invoked to select words with higher score. Since TF-IDF tends to boost the score of words which are very uncommon in the corpus, among the "top controversial words" there were many nonsensical words, probably originated by typos of the comment authors. For this reason, only the words with a match in the AFINN dictionary were kept. Figure \ref{TopWords} depicts the words selected by the $\chi^2$ analysis.
+
+\begin{figure}
+\centering
+\includegraphics[width=\tw]{Pictures/TopWs.png}
 \end{figure}
