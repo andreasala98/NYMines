@@ -34,10 +34,12 @@ where CS(c) is the comment score and $M$ is the number of comments related to a 
 The index of controversy for each article needed to take account of two factors: popularity of the comment, and if there was any form of debate between comments from different users. The former could be estimated naively as the number of comments under each article; the latter was evaluated as the interquartile range (IQR) of the $Pop(c)$ distribution for each article. This choice was made because the IQR is an indicator of statistical dispersion. Thus, one can expect for an article with opposing opinions to present two populated regions at the extremes of the distributions. 
 The controversy index was hence defined as 
 \begin{equation}
+\label{Str1}
 \mbox{Contr}_1(a) = \mbox{IQR}(a) * M
 \end{equation}
 The results for this index (see Section \ref{Resul}) suggested to take another strategy: applying the natural logarithm to the number of comments, to obtain
 \begin{equation}
+\label{Str2}
 \mbox{Contr}_2(a) = \mbox{IQR}(a) * \log{M}
 \end{equation}
 
