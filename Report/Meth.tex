@@ -5,7 +5,7 @@ This Section presents the methodologies used to accomplish the project goals. Fu
 
 \subsection{Data collection and preprocessing}
 
-First of all, the datasets were loaded from csv format into a Python Notebook. Since articles and comments from different months were stored in different files, I had to merge them into two Pandas {\tt DataFrames}. After that, all the features considered unnecessary for the project were removed. 
+First of all, the datasets were loaded from csv format into a Python Notebook. Since articles and comments from different months were stored in different files,they were merged into two Pandas {\tt DataFrames}. After that, all the features considered unnecessary for the project were removed. 
 The following step is to preprocess the comment bodies in order to prepare them for sentiment analysis. The preprocessing tasks included punctuation removal, case lowering, stop-word removal and stemming. The latter two were performed using methods from the NLTK package \cite{NLTK}. In particular, stemming was performed via a Porter Stemmer.
 Furthermore, all articles without any headline, section name and desk name were removed.
 
@@ -23,9 +23,9 @@ The score for each article (AS) was subsequently computed through the formula af
 
 \begin{equation}
 \label{ASeq}
-AS(a) = \frac{\sum_{c} Pop(c)}{\sqrt{M+1}}
+AS(a) = \frac{\sum_{c\in a} Pop(c)}{\sqrt{M(a)+1}}
 \end{equation}
-where CS(c) is the comment score and $M$ is the number of comments related to a given article.
+where CS(c) is the comment score and $M(a)$ is the number of comments related to a given article $a$.
 
 
 
@@ -35,12 +35,12 @@ The index of controversy for each article needed to take account of two factors:
 The controversy index was hence defined as 
 \begin{equation}
 \label{Str1}
-\mbox{Contr}_1(a) = \mbox{IQR}(a) * M
+\mbox{Contr}_1(a) = \mbox{IQR}(a) * M(a)
 \end{equation}
-The results for this index (see Section \ref{Resul}) suggested to take another strategy: applying the natural logarithm to the number of comments, to obtain
+The results with this strategy (see Section \ref{Resul}) suggested to implement another strategy: applying the natural logarithm to the number of comments, to obtain
 \begin{equation}
 \label{Str2}
-\mbox{Contr}_2(a) = \mbox{IQR}(a) * \log{M}
+\mbox{Contr}_2(a) = \mbox{IQR}(a) * \log{M(a)}
 \end{equation}
 
 After defining and calculating the index of controversy, articles were grouped by different categories, such as section name, new desk and author, in order to see whether some categories were more controversial than others. All the results from this groupings are reported in Sec. \ref{Resul}.
