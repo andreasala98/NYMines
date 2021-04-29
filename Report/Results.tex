@@ -25,11 +25,11 @@ The popularity distribution computed through Eq. (\ref{Popc}) shows a gaussian-l
 The article score distribution shows a similar behaviour; it is reported in Fig. \ref{AScore} even though it will not be included in further analyses. Again, the article Score calculated with Eq. \ref{ASeq} shows a quite symmetrical distribution, meaning that the estimator is consistent and the articles are distributed equally among the polarity spectrum.
 
 \subsection{Strategy 1 (linear)}
-The first strategy to estimate controversy in news articles (Eq. \ref{Str1}) was to multiply the number of comments related to each article with the IQR of the popularity distribution for such comments (labelled as \textit{debate}). This calculation lead to an index of controversy peaked near 0. Furthermore, the controversy
+The first strategy to estimate controversy in news articles (Eq. \ref{Str1}) was to multiply the number of comments related to each article with the IQR of the popularity distribution for such comments (labelled as \textit{debate}). This calculation lead to an index of controversy peaked near 0. Furthermore, the controversy distribution looks very similar to the comment number distribution. This suggests that popularity and controversy are strongly correlated, while debate plays an insignificant role in the compute. 
 
-\begin{figure}
+\begin{figure}[tb]
 \centering
 \includegraphics[width=\tw]{Pictures/Strat1Dist.pdf}
-\caption{Popularity, Debate and Controversy for strategy 1}
+\caption{Popularity, Debate and Controversy distributions for Strategy 1}
 \end{figure}
 
